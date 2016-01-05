@@ -10,6 +10,8 @@ RUN        mv /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-a
 RUN        echo "$DEFAULT_SHA /etc/apache2/sites-available/default.conf"         | sha256sum -c - \
  &&        echo "$DEFAULT_SSL_SHA /etc/apache2/sites-available/default-ssl.conf" | sha256sum -c -
 
+COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
+
 COPY       apache/default.conf     /etc/apache2/sites-available/default.conf
 COPY       apache/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
