@@ -20,6 +20,8 @@ RUN        sed -i -e '$a ServerTokens Prod'   /etc/apache2/apache2.conf \
 
 RUN        a2enmod ssl      \
  &&        a2enmod headers  \
+ &&        a2enmod deflate  \
+ &&        a2enmod expires  \
  &&        a2ensite default \
  &&        a2ensite default-ssl
 
