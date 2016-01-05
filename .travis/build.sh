@@ -3,11 +3,15 @@
 set -ev
 
 TAG="$REPOSITORY/$PROJECT-$ARCH"
-TAGSPECIFIER="$VERSION-$VARIANT"
+TAGSPECIFIER="$VERSION-$VARIANT${CUSTOM:+-$CUSTOM}"
 
-docker pull   "$REPOSITORY/php-$ARCH:5.6-$VARIANT"
-docker tag -f "$REPOSITORY/php-$ARCH:5.6-$VARIANT" "php:5.6-$VARIANT"
+case "$CUSTOM" in
+    * )
+        docker pull   "$REPOSITORY/php-$ARCH:5.6-$VARIANT"
+        docker tag -f "$REPOSITORY/php-$ARCH:5.6-$VARIANT" "php:5.6-$VARIANT"
 
-docker build -t "$TAG:$TAGSPECIFIER" "$PROJECT/$VERSION/$VARIANT"
+        docker build -t "$TAG:$TAGSPECIFIER" "$PROJECT/$VERSION/$VARIANT"
 
-docker run --rm "$TAG:$TAGSPECIFIER" cat version.php
+        docker run --rm "$TAG:$TAGSPECIFIER" cat version.php
+        ;;
+esac
