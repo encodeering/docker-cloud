@@ -4,3 +4,27 @@ sudo: required
 
 services:
 - docker
+
+env:
+  global:
+    - secure: "h+tAg+FQTs5DXz6FXM+fS3lb+1W3uPqIX8sTduGz/byBNK3LQPHTvpoKoeZeB15jiaa6I/kmxzlgoAcn5CT7X4DlyBvB3Q+cg2RvIpRM4ZcscQwLHxhAT/youxBfFk6BB5IF78lHRNknxsuk+ahWOSCOgduLJv38bvdDMYuLxbm/a1tvV1BiCCDqb5LSmpGybAK74PzuGBdR8f345femIu8zvzAfxH7wjs5NjgZhMdtD/UkoB6FaGYHtFtvbOwBnSnvQbc0Ad8ezk4BsT0VoHifzGqT6Fj2sSzZNGqP9BjjHgfvyG0217vkwrQs/FqrF7SrR94N6Gk0E1fRh5SQOodWjO4COFjgkz8R9cQO0KZ9VwgcYUn0/7He+yRV267oU4PJ6ef25UkmYOgOSpmO+09HaGO0jLZual34qfWq0vdg3isKTYPvjNx7t5gK2bp9zsnyM3He3cfN38seFBieDEomjWLHGumznOs5ZxxDxrwW2OUxeZeOTHhYFx/CbQk3EIKxTzHQwZkuthzkearHpeDbH+a+vGRWDVxpDXCFbWLRKv4N9kKDnRzjccC5TWkuRBvpBRsiU5Lr3pFBMcFgaZWnVB2Q4Q5Eo8NCN657IYfCtfCVQx5Ydbt8rrRQap9qkT3g5TrVC84NcH0bUM5tcCAYFfa6Lj8ozvI4Cwi/ypR4="
+    - secure: "ohtItN2YDs/Ny+D6TW3foIeQ5zQTufKr91/mLNHyxrqWYbwI8RVCqXu1C9Yw5TdmsGGgEHGd89w7tugOtoQHo0Qm/YA5NBn9vZcplFSnuquOgu2xIatqCuNITj5K3/jwJJXqiELnd/+85jYlHgfDb6WIQ66v783+Hk6iH7HOkQhd4ibtiYhWrMgB73wYIirssq5wnwlxpO7iXoCk20DJGp83I68mDz1/Wsv+vR3GvLhSCYFevsQm7yGv4TwirKK5jXlA54NADYw+LQjNY2dPND4NZgGFPmfvgk4d8DUgRsmeMEcImpfkkWx07N2p0TJvlYaf5PyooR3qLkibcBoUTqeGAA2KdCCWjfMChjxT06UrPA2pTH0dlRTVQl8X0i1DTa3XvpbQ0Uw2SUppYb5sO6YmVK9kKozkcv15vN1GUTNzJdKzW0SqEGgtUTLWcAZohiLjoyLUt9m43m8uUsoJ5payydPi+82m/4qQRhx/4kR1xFE6QE60AwL/l3q+DDF5OHJpSwnLRshGSZZHUDa+HpKdNJYCgk65QUA1fIUssT8GejQ7jPV5eK3ptI9X3ClORQLmhTY4RngB7/fNGgbXgPe0Nz8ojH5XKIBucFj53ase/Ziepm0OkUBz/PKlvHfeCyVoQ83+DkTp/x3vtwtWkvpovIgjSMyCxYYZYNJq+Uk="
+    - secure: "RbX20VJcAFrUaS0pyo/2XRDyLw5KR5zJMo5gjX5WliaTglsSHRM90RJHe2ef/s0W7pA29jkysLfvGO8HzRwFIcoOpjuiwoLBbdJmzw3dAkHKuxv9UXYIB5JOYvrqm2JOK0m3ud7QRWpHY+1zghYISiz6Sx/siDAYZtdcQuXTkcUaVSTAxCaMc0QruWwq7jrRlzBvDBgmvrJBbAOMAsdItD0+ITMPo6e9ysBHPfMrDpB5czybM356teDaFjgFtFsQX89ayhWgCPGf/o3NoawhJyt8uBq+N2a/gzsHzCw0/g5kpbfNCjMJK39j2zu6hDrDm6iQev8Z3uTBke45HzNh1NdAkwLjTu6bWH1+eVCvafhhAx3T68yhISMPVBJ0v6EOsXqDD+tRCFrz1R+CnFWqQwpHMVutpH5CqYN+Wh5yPjIc1rrLRH0hdeN2lVYM6djPn+0chGn5/6NAMRuhCZuUuk8mGrEVNFd7aMsXwU59JXL667CyqryWEOrupGD+oL7IgXvHx+OzhrKgMHcVZOwvVx5mZmP615x0Fqqi/tdO1bcfKm29eEwVksbbR7/TmfHk9WdIwmmemqL1bxCWYn0GEAcAG9NZNMB4ili8RSijhyaWSYJTj32O7JaF1UeGY+gXv/KN1XOeE6spLmYGTAtJwfxvuey9Gt40T7YqXklEFqM="
+    - PROJECT="owncloud"
+    - REPOSITORY="encodeering"
+  matrix:
+    - ARCH=armhf VERSION=8.2 VARIANT=apache
+
+before_script:
+- sudo cat /proc/sys/fs/binfmt_misc/status
+- sudo sh -c "echo ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:' > /proc/sys/fs/binfmt_misc/register"
+- git clone --depth 1 https://github.com/docker-library/owncloud.git "$PROJECT"
+
+script:
+- sudo -E sh .travis/build.sh
+
+after_success:
+- sudo -E sh .travis/deploy.sh
+
+after_script:
+- docker images
