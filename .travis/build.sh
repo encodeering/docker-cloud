@@ -11,7 +11,7 @@ case "$CUSTOM" in
         docker tag -f "$REPOSITORY/php-$ARCH:5.6-$VARIANT" "php:5.6-$VARIANT"
 
         docker build -t "$TAG:$TAGSPECIFIER" "$PROJECT/$VERSION/$VARIANT"
-
-        docker run --rm "$TAG:$TAGSPECIFIER" cat version.php
         ;;
 esac
+
+docker run --rm "$TAG:$TAGSPECIFIER" cat version.php
