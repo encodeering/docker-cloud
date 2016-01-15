@@ -10,9 +10,9 @@ case "$CUSTOM" in
         docker pull   "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT"
         docker tag -f "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT" "$PROJECT:$VERSION-$VARIANT"
 
-        [ -d "$VARIANT" ] || exit 1
+        [ -d "contrib/ssl/$VARIANT" ] || exit 1
 
-        docker build -t "$TAG:$TAGSPECIFIER" "$VARIANT"
+        docker build -t "$TAG:$TAGSPECIFIER" "contrib/ssl/$VARIANT"
         ;;
     * )
         docker pull   "$REPOSITORY/php-$ARCH:5.6-$VARIANT"
