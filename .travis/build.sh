@@ -9,7 +9,7 @@ TAGSPECIFIER="$VERSION-$VARIANT$BRANCH${CUSTOM:+-$CUSTOM}"
 
 case "$CUSTOM" in
     ssl )
-        docker pull   "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT$BRANCH"
+        docker run    "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT$BRANCH" bash
         docker tag -f "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT$BRANCH" "$PROJECT:$VERSION-$VARIANT"
 
         [ -d "contrib/ssl/$VARIANT" ] || exit 1
