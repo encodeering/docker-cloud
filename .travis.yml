@@ -13,9 +13,9 @@ env:
     - PROJECT="owncloud"
     - REPOSITORY="encodeering"
   matrix:
-    - ARCH=armhf VERSION=8.2 VARIANT=apache
+    #- ARCH=armhf VERSION=8.2 VARIANT=apache
     - ARCH=amd64 VERSION=8.2 VARIANT=apache
-    - ARCH=armhf VERSION=8.2 VARIANT=apache CUSTOM=ssl
+    #- ARCH=armhf VERSION=8.2 VARIANT=apache CUSTOM=ssl
     - ARCH=amd64 VERSION=8.2 VARIANT=apache CUSTOM=ssl
 
 before_script:
