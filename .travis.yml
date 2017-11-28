@@ -13,15 +13,17 @@ env:
     - PROJECT="owncloud"
     - REPOSITORY="encodeering"
     - BRANCH="$TRAVIS_BRANCH"
+    - COMMIT="94143a2da24c5f5ca90fede12cd5bb1aa5dc1f1a"
   matrix:
-    #- ARCH=armhf VERSION=8.2 VARIANT=apache
-    - ARCH=amd64 VERSION=8.2 VARIANT=apache
-    #- ARCH=armhf VERSION=8.2 VARIANT=apache CUSTOM=ssl
-    - ARCH=amd64 VERSION=8.2 VARIANT=apache CUSTOM=ssl
+    #- ARCH=armhf VERSION=8.2.11 VARIANT=apache
+    - ARCH=amd64 VERSION=8.2.11 VARIANT=apache
+    #- ARCH=armhf VERSION=8.2.11 VARIANT=apache CUSTOM=ssl
+    - ARCH=amd64 VERSION=8.2.11 VARIANT=apache CUSTOM=ssl
 
 before_script:
 - sudo -E sh .travis/prepare.sh
-- git clone --depth 1 https://github.com/docker-library/owncloud.git "$PROJECT"
+- git clone https://github.com/docker-library/owncloud.git "$PROJECT"
+- (cd "$PROJECT" && git checkout "$COMMIT")
 
 script:
 - sudo -E sh .travis/build.sh
