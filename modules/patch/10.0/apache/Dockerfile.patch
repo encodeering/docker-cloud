@@ -8,7 +8,7 @@ index 45ab61c..5e98b04 100644
  # https://doc.owncloud.org/server/9.0/admin_manual/installation/system_requirements.html ("PHP 7.0")
 -FROM php:7.0-apache
 +FROM php:apache
-
+ 
  RUN apt-get update && apt-get install -y --no-install-recommends \
  		bzip2 \
 @@ -43,7 +43,8 @@ RUN set -ex \
