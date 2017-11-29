@@ -19,8 +19,8 @@ case "$CUSTOM" in
         docker build -t "$TAG:$TAGSPECIFIER" "contrib/ssl/$VARIANT"
         ;;
     * )
-        docker pull   "$REPOSITORY/php-$ARCH:5.6-$VARIANT"
-        docker tag -f "$REPOSITORY/php-$ARCH:5.6-$VARIANT" "php:5.6-$VARIANT"
+        docker pull   "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$VARIANT"
+        docker tag -f "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$VARIANT" "php:5.6-$VARIANT"
 
         patch -p1 --no-backup-if-mismatch --directory="$PROJECT" < ".patch/$SEMANTIC/$VARIANT/Dockerfile.patch"
 
