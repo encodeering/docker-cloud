@@ -1,4 +1,4 @@
-FROM       owncloud:8.2-apache
+FROM       owncloud:apache
 
 MAINTAINER Michael Clausen <encodeering@gmail.com>
 

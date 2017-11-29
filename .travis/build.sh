@@ -12,7 +12,7 @@ SEMANTIC="${VERSION%.*}"
 case "$CUSTOM" in
     ssl )
         docker run    "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT$BRANCH" bash
-        docker tag -f "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT$BRANCH" "$PROJECT:$VERSION-$VARIANT"
+        docker tag -f "$REPOSITORY/$PROJECT-$ARCH:$VERSION-$VARIANT$BRANCH" "$PROJECT:$VARIANT"
 
         [ -d "contrib/ssl/$VARIANT" ] || exit 1
 
@@ -20,7 +20,7 @@ case "$CUSTOM" in
         ;;
     * )
         docker pull   "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$VARIANT"
-        docker tag -f "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$VARIANT" "php:5.6-$VARIANT"
+        docker tag -f "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$VARIANT" "php:$VARIANT"
 
         patch -p1 --no-backup-if-mismatch --directory="$PROJECT" < ".patch/$SEMANTIC/$VARIANT/Dockerfile.patch"
 
