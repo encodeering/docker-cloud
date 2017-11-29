@@ -1,0 +1,14 @@
+diff --git a/10.0/apache/Dockerfile b/10.0/apache/Dockerfile
+index 45ab61c..1196352 100644
+--- a/10.0/apache/Dockerfile
++++ b/10.0/apache/Dockerfile
+@@ -43,7 +43,8 @@ RUN set -ex \
+ 	&& pecl install redis-3.1.2 \
+ 	&& docker-php-ext-enable apcu memcached redis
+ 
+-ENV OWNCLOUD_VERSION 10.0.3
++ARG OWNCLOUD_VERSION
++
+ VOLUME /var/www/html
+ 
+ RUN curl -fsSL -o owncloud.tar.bz2 \
