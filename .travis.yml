@@ -15,10 +15,7 @@ env:
     - BRANCH="$TRAVIS_BRANCH"
     - COMMIT="5c0f5a270e565410cc47046b29b04e4a5ec9e828"
   matrix:
-    #- ARCH=armhf VERSION=10.0.3 VARIANT=apache VARIANTVERSION=7.0
     - ARCH=amd64 VERSION=10.0.3 VARIANT=apache VARIANTVERSION=7.0
-    #- ARCH=armhf VERSION=10.0.3 VARIANT=apache VARIANTVERSION=7.0 CUSTOM=ssl
-    - ARCH=amd64 VERSION=10.0.3 VARIANT=apache VARIANTVERSION=7.0 CUSTOM=ssl
 
 install:
 - bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.4
@@ -33,7 +30,7 @@ after_script:
 - docker images
 
 deploy:
-  script: sudo -E bash ./module.sh "." "./release.sh" "$CUSTOM"
+  script: sudo -E bash ./module.sh "." "./release.sh" "ssl"
   provider: script
   skip_cleanup: true
   on:
