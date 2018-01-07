@@ -13,7 +13,7 @@ import com.encodeering.docker.docker
 
 SEMANTIC="${VERSION%.*}"
 
-docker-pull "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$VARIANT" "php:$VARIANT"
+docker-pull "$REPOSITORY/php-$ARCH:$VARIANTVERSION-$BASE-$VARIANT" "php:$VARIANT"
 
 patch -p1 --no-backup-if-mismatch --directory="$PROJECT" < "patch/$SEMANTIC/$VARIANT/Dockerfile.patch"
 
