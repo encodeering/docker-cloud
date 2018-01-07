@@ -15,7 +15,7 @@ env:
     - BRANCH="$TRAVIS_BRANCH"
     - COMMIT="5c0f5a270e565410cc47046b29b04e4a5ec9e828"
   matrix:
-    - BASE=debian ARCH=amd64 VERSION=10.0.3 VARIANT=apache
+    - BASE=debian ARCH=amd64 VERSION=10.0 VARIANT=apache
 
 install:
 - bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.5
