@@ -1,6 +1,7 @@
 ## Automatically created docker image for owncloud
 
 [![Build Status](https://travis-ci.org/encodeering/docker-owncloud.svg?branch=master)](https://travis-ci.org/encodeering/docker-owncloud)
+[![Build Status](https://semaphoreci.com/api/v1/encodeering/docker-owncloud/branches/master/shields_badge.svg)](https://semaphoreci.com/encodeering/docker-owncloud)
 
 ### Docker ([Origin](https://github.com/docker-library/owncloud))
 
