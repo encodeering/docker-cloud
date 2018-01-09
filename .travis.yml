@@ -13,15 +13,14 @@ env:
     - PROJECT="owncloud"
     - REPOSITORY="encodeering"
     - BRANCH="$TRAVIS_BRANCH"
-    - COMMIT="146a37ed55bb70778feef7f4ce5a8b56b8a4b3ce"
   matrix:
     - BASE=debian ARCH=amd64 VERSION=10.0 VARIANT=apache
 
 install:
-- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.5
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.6
 
 before_script:
-- sudo -E bash ./module.sh "." "./setup.sh" "https://github.com/docker-library/owncloud.git" "modules/$PROJECT" "$COMMIT"
+- sudo -E bash ./module.sh "." "./setup.sh"
 
 script:
 - sudo -E bash ./module.sh "modules" "./build.sh"
