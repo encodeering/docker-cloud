@@ -26,8 +26,8 @@ RUN        a2enmod ssl      \
  &&        a2ensite default \
  &&        a2ensite default-ssl
 
-RUN        sed -i -e '/exec/i\source /etc/apache2/envvars'                                   /usr/local/bin/docker-entrypoint.sh \
- &&        sed -i -e '/chown -R/a\        find /var/www/html -type d -exec chmod 750 {} \\;' /usr/local/bin/docker-entrypoint.sh \
- &&        sed -i -e '/chown -R/a\        find /var/www/html -type f -exec chmod 640 {} \\;' /usr/local/bin/docker-entrypoint.sh
+RUN        sed -i -e '/exec/i\source /etc/apache2/envvars'                                                  /usr/local/bin/docker-entrypoint.sh \
+ &&        sed -i -e '/chown -R/a\        find /var/www/html ! -perm 750 -a -type d -exec chmod 750 {} \\;' /usr/local/bin/docker-entrypoint.sh \
+ &&        sed -i -e '/chown -R/a\        find /var/www/html ! -perm 640 -a -type f -exec chmod 640 {} \\;' /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE     443
