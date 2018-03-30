@@ -7,6 +7,10 @@ ARG        DEFAULT_SSL_SHA=d073d698c49535c619cbcc5d0bf0c9b1b1370ff1afde2d618a6a1
 
 WORKDIR    /etc/apache2
 
+RUN        find conf-enabled -name '*.conf' -exec basename {} \; \
+  |        xargs -r a2disconf                                    \
+ &&                 a2enconf docker-php
+
 RUN        a2dissite          000-default \
  &&        mv sites-available/000-default.conf sites-available/default.conf
 
