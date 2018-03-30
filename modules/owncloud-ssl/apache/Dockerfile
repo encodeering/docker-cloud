@@ -16,6 +16,7 @@ COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 
 COPY       apache/vconf/*.conf conf-available/
 COPY       apache/vhost/*.conf sites-available/
+COPY       apache/vhost/conf   conf
 
 RUN        chmod +x /usr/local/bin/docker-entrypoint.sh
 
