@@ -30,6 +30,7 @@ RUN        a2enmod ssl      \
  &&        a2enmod deflate  \
  &&        a2enmod expires  \
  &&        a2enconf deflate \
+ &&        a2enconf expires \
  &&        a2ensite default \
  &&        a2ensite default-ssl
 
