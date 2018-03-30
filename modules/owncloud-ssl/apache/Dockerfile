@@ -5,6 +5,8 @@ MAINTAINER Michael Clausen <encodeering@gmail.com>
 EXPOSE     80
 EXPOSE     443
 
+ENV        VHOST=ssl-redirect
+
 WORKDIR    /etc/apache2
 
 RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2disconf \
@@ -33,9 +35,7 @@ RUN        a2enmod ssl         \
                     expires    \
                     mime       \
                     vhost      \
-                    security   \
- &&        a2ensite default    \
-                    default-ssl
+                    security
 
 RUN        sed -i -e '/exec/i\source /etc/apache2/envvars'                                                  /usr/local/bin/docker-owncloud.sh \
  &&        sed -i -e '/chown -R/a\        find /var/www/html ! -perm 750 -a -type d -exec chmod 750 {} \\;' /usr/local/bin/docker-owncloud.sh \
