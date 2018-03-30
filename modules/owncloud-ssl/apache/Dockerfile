@@ -2,20 +2,12 @@ FROM       owncloud:apache
 
 MAINTAINER Michael Clausen <encodeering@gmail.com>
 
-ARG        DEFAULT_SHA=fdd55ad7cf9b495bccdd8465f37bbfe1577068b24abae0f3d934b6a1d1d29331
-ARG        DEFAULT_SSL_SHA=d073d698c49535c619cbcc5d0bf0c9b1b1370ff1afde2d618a6a178bc013a985
-
 WORKDIR    /etc/apache2
 
-RUN        find conf-enabled -name '*.conf' -exec basename {} \; \
-  |        xargs -r a2disconf                                    \
- &&                 a2enconf docker-php
-
-RUN        a2dissite          000-default \
- &&        mv sites-available/000-default.conf sites-available/default.conf
-
-RUN        echo "$DEFAULT_SHA sites-available/default.conf"         | sha256sum -c - \
- &&        echo "$DEFAULT_SSL_SHA sites-available/default-ssl.conf" | sha256sum -c -
+RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2disconf \
+ &&        find sites-enabled  -name '*.conf' -exec basename {} \; | xargs -r a2dissite \
+ &&        find conf-available  ! -name docker-php.conf -type f -delete                 \
+ &&        find sites-available                         -type f -delete
 
 COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 
@@ -27,6 +19,7 @@ RUN        a2enmod ssl      \
  &&        a2enmod deflate  \
  &&        a2enmod expires  \
  &&        a2enmod mime     \
+ &&        a2enconf docker-php \
  &&        a2enconf deflate \
  &&        a2enconf expires \
  &&        a2enconf mime    \
