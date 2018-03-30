@@ -5,19 +5,21 @@ MAINTAINER Michael Clausen <encodeering@gmail.com>
 ARG        DEFAULT_SHA=fdd55ad7cf9b495bccdd8465f37bbfe1577068b24abae0f3d934b6a1d1d29331
 ARG        DEFAULT_SSL_SHA=d073d698c49535c619cbcc5d0bf0c9b1b1370ff1afde2d618a6a178bc013a985
 
-RUN        a2dissite                       000-default \
- &&        mv /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/default.conf
+WORKDIR    /etc/apache2
 
-RUN        echo "$DEFAULT_SHA /etc/apache2/sites-available/default.conf"         | sha256sum -c - \
- &&        echo "$DEFAULT_SSL_SHA /etc/apache2/sites-available/default-ssl.conf" | sha256sum -c -
+RUN        a2dissite          000-default \
+ &&        mv sites-available/000-default.conf sites-available/default.conf
+
+RUN        echo "$DEFAULT_SHA sites-available/default.conf"         | sha256sum -c - \
+ &&        echo "$DEFAULT_SSL_SHA sites-available/default-ssl.conf" | sha256sum -c -
 
 COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 
-COPY       apache/vhost/default.conf     /etc/apache2/sites-available/default.conf
-COPY       apache/vhost/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+COPY       apache/vhost/default.conf     sites-available/default.conf
+COPY       apache/vhost/default-ssl.conf sites-available/default-ssl.conf
 
-RUN        sed -i -e '$a ServerTokens Prod'   /etc/apache2/apache2.conf \
- &&        sed -i -e '$a ServerSignature Off' /etc/apache2/apache2.conf
+RUN        sed -i -e '$a ServerTokens Prod'   apache2.conf \
+ &&        sed -i -e '$a ServerSignature Off' apache2.conf
 
 RUN        a2enmod ssl      \
  &&        a2enmod headers  \
@@ -31,3 +33,5 @@ RUN        sed -i -e '/exec/i\source /etc/apache2/envvars'                      
  &&        sed -i -e '/chown -R/a\        find /var/www/html ! -perm 640 -a -type f -exec chmod 640 {} \\;' /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE     443
+
+WORKDIR    /var/www/html
