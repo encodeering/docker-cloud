@@ -22,9 +22,6 @@ COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 COPY       apache/vconf/*.conf conf-available/
 COPY       apache/vhost/*.conf sites-available/
 
-RUN        sed -i -e '$a ServerTokens Prod'   apache2.conf \
- &&        sed -i -e '$a ServerSignature Off' apache2.conf
-
 RUN        a2enmod ssl      \
  &&        a2enmod headers  \
  &&        a2enmod deflate  \
@@ -32,6 +29,7 @@ RUN        a2enmod ssl      \
  &&        a2enconf deflate \
  &&        a2enconf expires \
  &&        a2enconf vhost   \
+ &&        a2enconf security\
  &&        a2ensite default \
  &&        a2ensite default-ssl
 
