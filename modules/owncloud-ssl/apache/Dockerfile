@@ -26,8 +26,10 @@ RUN        a2enmod ssl      \
  &&        a2enmod headers  \
  &&        a2enmod deflate  \
  &&        a2enmod expires  \
+ &&        a2enmod mime     \
  &&        a2enconf deflate \
  &&        a2enconf expires \
+ &&        a2enconf mime    \
  &&        a2enconf vhost   \
  &&        a2enconf security\
  &&        a2ensite default \
