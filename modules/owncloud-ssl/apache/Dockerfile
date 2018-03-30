@@ -13,8 +13,8 @@ RUN        echo "$DEFAULT_SHA /etc/apache2/sites-available/default.conf"        
 
 COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 
-COPY       apache/default.conf     /etc/apache2/sites-available/default.conf
-COPY       apache/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+COPY       apache/vhost/default.conf     /etc/apache2/sites-available/default.conf
+COPY       apache/vhost/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 
 RUN        sed -i -e '$a ServerTokens Prod'   /etc/apache2/apache2.conf \
  &&        sed -i -e '$a ServerSignature Off' /etc/apache2/apache2.conf
