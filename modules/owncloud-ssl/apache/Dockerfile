@@ -19,6 +19,7 @@ RUN        echo "$DEFAULT_SHA sites-available/default.conf"         | sha256sum 
 
 COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 
+COPY       apache/vconf/*.conf conf-available/
 COPY       apache/vhost/*.conf sites-available/
 
 RUN        sed -i -e '$a ServerTokens Prod'   apache2.conf \
@@ -28,6 +29,7 @@ RUN        a2enmod ssl      \
  &&        a2enmod headers  \
  &&        a2enmod deflate  \
  &&        a2enmod expires  \
+ &&        a2enconf deflate \
  &&        a2ensite default \
  &&        a2ensite default-ssl
 
