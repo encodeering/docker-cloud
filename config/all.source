@@ -1,3 +1,3 @@
 SCM_SOURCE=https://github.com/docker-library/owncloud.git
-SCM_TARGET=modules/$PROJECT
+SCM_TARGET=modules/$VARIANT/$PROJECT
 SCM_COMMIT=442797442454d08dfcfea3cbc6a079885d1888b6
