@@ -14,6 +14,7 @@ env:
     - REPOSITORY="encodeering"
   matrix:
     - BASE=debian ARCH=amd64 VERSION=10.0 VARIANT=apache
+    - BASE=debian ARCH=amd64 VERSION=10.0 VARIANT=fpm
 
 install:
 - bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.8
