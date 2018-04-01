@@ -9,10 +9,12 @@
 
     ```docker pull encodeering/owncloud-armhf:10.0-debian-apache```  
     ```docker pull encodeering/owncloud-armhf:10.0-debian-apache-sequel```  
-    ```docker pull encodeering/owncloud-armhf:10.0-debian-fpm```
+    ```docker pull encodeering/owncloud-armhf:10.0-debian-fpm```  
+    ```docker pull encodeering/owncloud-armhf:10.0-debian-fpm-sequel```
 
 - https://hub.docker.com/r/encodeering/owncloud-amd64/
 
     ```docker pull encodeering/owncloud-amd64:10.0-debian-apache```  
     ```docker pull encodeering/owncloud-amd64:10.0-debian-apache-sequel```  
-    ```docker pull encodeering/owncloud-amd64:10.0-debian-fpm```
+    ```docker pull encodeering/owncloud-amd64:10.0-debian-fpm```  
+    ```docker pull encodeering/owncloud-amd64:10.0-debian-fpm-sequel```

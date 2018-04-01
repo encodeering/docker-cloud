@@ -7,6 +7,8 @@ import com.encodeering.ci.docker
 
 docker-pull "$REPOSITORY/php-$ARCH:7.0-$BASE-$VARIANT" "php:7.0-$VARIANT"
 
-docker-build "$PROJECT/$VERSION/$VARIANT"
+docker-build -t "$PROJECT:$VARIANT" "$PROJECT/$VERSION/$VARIANT"
+docker-build --suffix sequel sequel
 
-docker-verify cat version.php
+docker-verify                 cat version.php
+docker-verify --suffix sequel cat version.php
