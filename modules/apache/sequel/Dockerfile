@@ -12,7 +12,8 @@ WORKDIR    /etc/apache2
 RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2disconf \
  &&        find sites-enabled  -name '*.conf' -exec basename {} \; | xargs -r a2dissite \
  &&        find conf-available  ! -name docker-php.conf -type f -delete                 \
- &&        find sites-available                         -type f -delete
+ &&        find sites-available                         -type f -delete                 \
+ &&        rm ports.conf
 
 RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-owncloud.sh
 
