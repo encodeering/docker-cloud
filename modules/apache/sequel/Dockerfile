@@ -19,6 +19,7 @@ RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-ownclou
 COPY       bin/docker-entrypoint.sh    /usr/local/bin/
 COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
 
+COPY       apache/apache2.conf .
 COPY       apache/vconf/*.conf conf-available/
 COPY       apache/vhost/*.conf sites-available/
 COPY       apache/vhost/conf   conf
