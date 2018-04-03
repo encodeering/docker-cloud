@@ -15,7 +15,8 @@ RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2
  &&        find sites-available                         -type f -delete                 \
  &&        rm ports.conf
 
-RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-cloud.sh
+RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-cloud.sh \
+ ||        mv /entrypoint.sh                       /usr/local/bin/docker-cloud.sh
 
 COPY       bin/docker-entrypoint.sh    /usr/local/bin/
 COPY       php/docker-php-cloud.ini    /usr/local/etc/php/conf.d/
@@ -40,3 +41,5 @@ RUN        a2enmod ssl         \
                     security
 
 WORKDIR    /var/www/html
+
+ENTRYPOINT ["docker-entrypoint.sh"]
