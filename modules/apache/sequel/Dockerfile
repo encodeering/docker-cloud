@@ -39,7 +39,4 @@ RUN        a2enmod ssl         \
                     vhost      \
                     security
 
-RUN        sed -i -e '/chown -R/a\        find /var/www/html ! -perm 750 -a -type d -exec chmod 750 {} \\;' /usr/local/bin/docker-owncloud.sh \
- &&        sed -i -e '/chown -R/a\        find /var/www/html ! -perm 640 -a -type f -exec chmod 640 {} \\;' /usr/local/bin/docker-owncloud.sh
-
 WORKDIR    /var/www/html
