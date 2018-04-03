@@ -1,4 +1,4 @@
-FROM       owncloud:apache
+FROM       cloud:apache
 
 MAINTAINER Michael Clausen <encodeering@gmail.com>
 
@@ -15,10 +15,10 @@ RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2
  &&        find sites-available                         -type f -delete                 \
  &&        rm ports.conf
 
-RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-owncloud.sh
+RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-cloud.sh
 
 COPY       bin/docker-entrypoint.sh    /usr/local/bin/
-COPY       php/docker-owncloud-php.ini /usr/local/etc/php/conf.d/
+COPY       php/docker-php-cloud.ini    /usr/local/etc/php/conf.d/
 
 COPY       apache/apache2.conf .
 COPY       apache/vconf/*.conf conf-available/

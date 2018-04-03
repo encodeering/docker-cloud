@@ -1,4 +1,4 @@
-FROM       owncloud:fpm
+FROM       cloud:fpm
 
 MAINTAINER Michael Clausen <encodeering@gmail.com>
 

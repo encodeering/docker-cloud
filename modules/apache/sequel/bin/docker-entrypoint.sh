@@ -10,4 +10,4 @@ fi
 
 a2ensite ${VHOST}
 
-exec docker-owncloud.sh "$@"
+exec docker-cloud.sh "$@"
