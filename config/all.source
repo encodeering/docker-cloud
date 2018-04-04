@@ -3,4 +3,10 @@ case "$PROJECT" in
     SCM_SOURCE=https://github.com/docker-library/owncloud.git
     SCM_TARGET=modules/$VARIANT/$PROJECT
     SCM_COMMIT=442797442454d08dfcfea3cbc6a079885d1888b6
+    ;;
+  nextcloud)
+    SCM_SOURCE=https://github.com/nextcloud/docker.git
+    SCM_TARGET=modules/$VARIANT/$PROJECT
+    SCM_COMMIT=01ad4658abe6add2ee6282432b0d3d3e5d22d135
+    ;;
 esac
