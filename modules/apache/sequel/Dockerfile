@@ -43,3 +43,5 @@ RUN        a2enmod ssl         \
 WORKDIR    /var/www/html
 
 ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD        ["apache2-foreground"]
