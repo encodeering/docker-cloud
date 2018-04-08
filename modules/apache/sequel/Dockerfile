@@ -22,6 +22,8 @@ RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2
 RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-cloud.sh \
  ||        mv /entrypoint.sh                       /usr/local/bin/docker-cloud.sh
 
+RUN        rm /cron.sh || true
+
 COPY       bin       /usr/local/bin
 COPY       php/*.ini /usr/local/etc/php/conf.d/
 
