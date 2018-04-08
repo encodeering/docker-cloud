@@ -18,15 +18,15 @@ RUN        find conf-enabled   -name '*.conf' -exec basename {} \; | xargs -r a2
 RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-cloud.sh \
  ||        mv /entrypoint.sh                       /usr/local/bin/docker-cloud.sh
 
-COPY       bin/docker-entrypoint.sh    /usr/local/bin/
-COPY       php/docker-php-cloud.ini    /usr/local/etc/php/conf.d/
+COPY       bin       /usr/local/bin
+COPY       php/*.ini /usr/local/etc/php/conf.d/
+
+RUN        chmod +x /usr/local/bin/*.sh
 
 COPY       apache/apache2.conf .
 COPY       apache/vconf/*.conf conf-available/
 COPY       apache/vhost/*.conf sites-available/
 COPY       apache/vhost/conf   conf
-
-RUN        chmod +x /usr/local/bin/docker-entrypoint.sh
 
 RUN        a2enmod ssl         \
                    headers     \
