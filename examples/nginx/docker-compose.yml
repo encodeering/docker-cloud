@@ -1,0 +1,95 @@
+version: '3.5'
+services:
+  traefik:
+    image: encodeering/traefik-${ARCH:-armhf}:1.5-alpine
+    command: |
+      --logLevel='INFO'
+      --defaultentrypoints='http,https'
+      --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
+      --entryPoints='Name:https Address::443 TLS'
+      --docker
+      --docker.exposedbydefault=false
+      --acme
+      --acme.email='${EMAIL}'
+      --acme.entrypoint='https'
+      --acme.httpchallenge.entrypoint='http'
+      --acme.storage='/data/acme.json'
+      --acme.onhostrule=true
+    volumes:
+      - proxy:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      traefik:
+
+  nginx:
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-alpine-nginx
+    volumes:
+      - www:/var/www/html
+    depends_on:
+      - cloud
+    environment:
+      VHOST: ssl-off
+    labels:
+      traefik.frontend.rule: Host:${DOMAIN}
+      traefik.port: 80
+      traefik.enable: true
+      traefik.docker.network: traefik
+    networks:
+      cloud:
+      traefik:
+
+  cloud:
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-debian-fpm-sequel
+    volumes:
+      - www:/var/www/html
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      cloud:
+        aliases:
+          - php
+
+  cron:
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-debian-fpm-sequel
+    entrypoint: docker-cron.sh
+    volumes:
+      - www:/var/www/html
+    depends_on:
+      - cloud
+    networks:
+      cloud:
+
+  postgres:
+    image: encodeering/postgres-${ARCH:-armhf}:9.4-alpine
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${SECRET:-secret}
+    networks:
+      cloud:
+
+  redis:
+    image: encodeering/redis-${ARCH:-armhf}:4.0-alpine
+    volumes:
+      - cache:/data
+    environment:
+      REDIS_MAXCONN: 10000
+    networks:
+      cloud:
+
+volumes:
+  www:
+  db:
+  cache:
+  proxy:
+
+networks:
+  cloud:
+    name: cloud
+  traefik:
+    name: traefik
