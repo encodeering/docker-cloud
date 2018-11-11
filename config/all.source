@@ -2,11 +2,11 @@ case "$PROJECT" in
   owncloud)
     SCM_SOURCE=https://github.com/docker-library/owncloud.git
     SCM_TARGET=modules/$VARIANT/$PROJECT
-    SCM_COMMIT=328e1c60647c62eef2527dcd9f1638578f31ffeb
+    SCM_COMMIT=d815707323e2dce4696a1f7b1639f86fc6bf8b8a
     ;;
   nextcloud)
     SCM_SOURCE=https://github.com/nextcloud/docker.git
     SCM_TARGET=modules/$VARIANT/$PROJECT
-    SCM_COMMIT=69e982d7c7d7d00e04ce79a353fc275a9c4496e9
+    SCM_COMMIT=44398e216a954c43dcea073b9a71e39634a9c585
     ;;
 esac
