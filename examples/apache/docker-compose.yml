@@ -25,7 +25,7 @@ services:
       traefik:
 
   cloud:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-debian-apache-sequel
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-debian-apache-sequel
     volumes:
       - www:/var/www/html
     depends_on:
@@ -43,7 +43,7 @@ services:
       traefik:
 
   cron:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-debian-apache-sequel
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-debian-apache-sequel
     entrypoint: docker-cron.sh
     volumes:
       - www:/var/www/html

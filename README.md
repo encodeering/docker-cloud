@@ -25,19 +25,19 @@
 
 - https://hub.docker.com/r/encodeering/nextcloud-armhf/
 
-    ```docker pull encodeering/nextcloud-armhf:13.0-debian-apache```  
-    ```docker pull encodeering/nextcloud-armhf:13.0-debian-apache-sequel```  
-    ```docker pull encodeering/nextcloud-armhf:13.0-debian-fpm```  
-    ```docker pull encodeering/nextcloud-armhf:13.0-debian-fpm-sequel```  
-    ```docker pull encodeering/nextcloud-armhf:13.0-alpine-nginx```
+    ```docker pull encodeering/nextcloud-armhf:15.0-debian-apache```  
+    ```docker pull encodeering/nextcloud-armhf:15.0-debian-apache-sequel```  
+    ```docker pull encodeering/nextcloud-armhf:15.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-armhf:15.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-armhf:15.0-alpine-nginx```
 
 - https://hub.docker.com/r/encodeering/nextcloud-amd64/
 
-    ```docker pull encodeering/nextcloud-amd64:13.0-debian-apache```  
-    ```docker pull encodeering/nextcloud-amd64:13.0-debian-apache-sequel```  
-    ```docker pull encodeering/nextcloud-amd64:13.0-debian-fpm```  
-    ```docker pull encodeering/nextcloud-amd64:13.0-debian-fpm-sequel```  
-    ```docker pull encodeering/nextcloud-amd64:13.0-alpine-nginx```
+    ```docker pull encodeering/nextcloud-amd64:15.0-debian-apache```  
+    ```docker pull encodeering/nextcloud-amd64:15.0-debian-apache-sequel```  
+    ```docker pull encodeering/nextcloud-amd64:15.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-amd64:15.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-amd64:15.0-alpine-nginx```
 
 ### Setup
 
@@ -48,7 +48,7 @@
 1. Run `export DOMAIN=ddns.domain.com`
 1. Run `export SECRET=secret` [default]
 1. Run `export PROVIDER=nextcloud` [default]
-1. Run `export VERSION=13.0` [default]
+1. Run `export VERSION=15.0` [default]
 1. Run `export ARCH=armhf` [default]
 1. Run `docker-compose up`
 1. Open browser and check connectivity

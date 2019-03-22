@@ -25,7 +25,7 @@ services:
       traefik:
 
   nginx:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-alpine-nginx
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-alpine-nginx
     volumes:
       - www:/var/www/html
     depends_on:
@@ -42,7 +42,7 @@ services:
       traefik:
 
   cloud:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-debian-fpm-sequel
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-debian-fpm-sequel
     volumes:
       - www:/var/www/html
     depends_on:
@@ -54,7 +54,7 @@ services:
           - php
 
   cron:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-13.0}-debian-fpm-sequel
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-debian-fpm-sequel
     entrypoint: docker-cron.sh
     volumes:
       - www:/var/www/html
