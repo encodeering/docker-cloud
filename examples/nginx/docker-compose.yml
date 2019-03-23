@@ -3,8 +3,11 @@ services:
   traefik:
     image: encodeering/traefik-${ARCH:-armhf}:1.5-alpine
     command: |
+      --api
+      --api.entryPoint='api'
       --logLevel='INFO'
       --defaultentrypoints='http,https'
+      --entryPoints='Name:api Address::8080'
       --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
       --entryPoints='Name:https Address::443 TLS'
       --docker
@@ -20,6 +23,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "80:80"
+      - "8080:8080"
       - "443:443"
     networks:
       traefik:
