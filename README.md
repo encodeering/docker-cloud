@@ -7,16 +7,12 @@
 
 - https://hub.docker.com/r/encodeering/owncloud-armhf/
 
-    ```docker pull encodeering/owncloud-armhf:10.0-debian-apache```  
-    ```docker pull encodeering/owncloud-armhf:10.0-debian-apache-sequel```  
     ```docker pull encodeering/owncloud-armhf:10.0-debian-fpm```  
     ```docker pull encodeering/owncloud-armhf:10.0-debian-fpm-sequel```  
     ```docker pull encodeering/owncloud-armhf:10.0-alpine-nginx```
 
 - https://hub.docker.com/r/encodeering/owncloud-amd64/
 
-    ```docker pull encodeering/owncloud-amd64:10.0-debian-apache```  
-    ```docker pull encodeering/owncloud-amd64:10.0-debian-apache-sequel```  
     ```docker pull encodeering/owncloud-amd64:10.0-debian-fpm```  
     ```docker pull encodeering/owncloud-amd64:10.0-debian-fpm-sequel```  
     ```docker pull encodeering/owncloud-amd64:10.0-alpine-nginx```
@@ -25,16 +21,12 @@
 
 - https://hub.docker.com/r/encodeering/nextcloud-armhf/
 
-    ```docker pull encodeering/nextcloud-armhf:15.0-debian-apache```  
-    ```docker pull encodeering/nextcloud-armhf:15.0-debian-apache-sequel```  
     ```docker pull encodeering/nextcloud-armhf:15.0-debian-fpm```  
     ```docker pull encodeering/nextcloud-armhf:15.0-debian-fpm-sequel```  
     ```docker pull encodeering/nextcloud-armhf:15.0-alpine-nginx```
 
 - https://hub.docker.com/r/encodeering/nextcloud-amd64/
 
-    ```docker pull encodeering/nextcloud-amd64:15.0-debian-apache```  
-    ```docker pull encodeering/nextcloud-amd64:15.0-debian-apache-sequel```  
     ```docker pull encodeering/nextcloud-amd64:15.0-debian-fpm```  
     ```docker pull encodeering/nextcloud-amd64:15.0-debian-fpm-sequel```  
     ```docker pull encodeering/nextcloud-amd64:15.0-alpine-nginx```
@@ -42,7 +34,7 @@
 ### Setup
 
 1. Install [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install)
-1. Download [apache](examples/apache/docker-compose.yml) or [nginx](examples/nginx/docker-compose.yml) docker-compose.yml file
+1. Download [nginx](examples/nginx/docker-compose.yml) docker-compose.yml file
 1. Setup ddns and configure port forwarding on your router
 1. Run `export EMAIL=your@email.com`
 1. Run `export DOMAIN=ddns.domain.com`
