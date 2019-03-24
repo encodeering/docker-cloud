@@ -11,8 +11,10 @@ RUN        mv /usr/local/bin/docker-entrypoint.sh  /usr/local/bin/docker-cloud.s
 
 RUN        rm /cron.sh || true
 
-COPY       bin       /usr/local/bin
-COPY       php/*.ini /usr/local/etc/php/conf.d/
+COPY       bin /usr/local/bin
+COPY       php/*.ini ${PHP_INI_DIR}/conf.d/
+
+RUN        ln -s "${PHP_INI_DIR}/php.ini-production" "${PHP_INI_DIR}/php.ini"
 
 RUN        chmod +x /usr/local/bin/*.sh
 
