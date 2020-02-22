@@ -7,6 +7,6 @@ case "$PROJECT" in
   nextcloud)
     SCM_SOURCE=https://github.com/nextcloud/docker.git
     SCM_TARGET=modules/$VARIANT/$PROJECT
-    SCM_COMMIT=0578591681e6020a8cd16d39d3128f187627d6c8
+    SCM_COMMIT=4cd608a6e077168529b5501aa1c1ae3df4f9c505
     ;;
 esac
