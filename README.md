@@ -21,15 +21,28 @@
 
 - https://hub.docker.com/r/encodeering/nextcloud-armhf/
 
-    ```docker pull encodeering/nextcloud-armhf:15.0-debian-fpm```  
-    ```docker pull encodeering/nextcloud-armhf:15.0-debian-fpm-sequel```  
-    ```docker pull encodeering/nextcloud-armhf:15.0-alpine-nginx```
+    ```docker pull encodeering/nextcloud-armhf:16.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-armhf:16.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-armhf:16.0-alpine-nginx```  
+    ```docker pull encodeering/nextcloud-armhf:17.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-armhf:17.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-armhf:17.0-alpine-nginx```  
+    ```docker pull encodeering/nextcloud-armhf:18.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-armhf:18.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-armhf:18.0-alpine-nginx```
 
 - https://hub.docker.com/r/encodeering/nextcloud-amd64/
 
-    ```docker pull encodeering/nextcloud-amd64:15.0-debian-fpm```  
-    ```docker pull encodeering/nextcloud-amd64:15.0-debian-fpm-sequel```  
-    ```docker pull encodeering/nextcloud-amd64:15.0-alpine-nginx```
+    ```docker pull encodeering/nextcloud-amd64:16.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-amd64:16.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-amd64:16.0-alpine-nginx```  
+    ```docker pull encodeering/nextcloud-amd64:17.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-amd64:17.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-amd64:17.0-alpine-nginx```  
+    ```docker pull encodeering/nextcloud-amd64:18.0-debian-fpm```  
+    ```docker pull encodeering/nextcloud-amd64:18.0-debian-fpm-sequel```  
+    ```docker pull encodeering/nextcloud-amd64:18.0-alpine-nginx```
+
 
 ### Configuration
 
