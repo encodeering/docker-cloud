@@ -14,6 +14,10 @@ env:
   matrix:
     - PROJECT="owncloud"  BASE=debian ARCH=amd64 VERSION=10.0 VARIANT=fpm
     - PROJECT="owncloud"  BASE=alpine ARCH=amd64 VERSION=10.0 VARIANT=nginx
+    - PROJECT="nextcloud" BASE=debian ARCH=amd64 VERSION=16.0 VARIANT=fpm
+    - PROJECT="nextcloud" BASE=alpine ARCH=amd64 VERSION=16.0 VARIANT=nginx
+    - PROJECT="nextcloud" BASE=debian ARCH=amd64 VERSION=17.0 VARIANT=fpm
+    - PROJECT="nextcloud" BASE=alpine ARCH=amd64 VERSION=17.0 VARIANT=nginx
     - PROJECT="nextcloud" BASE=debian ARCH=amd64 VERSION=18.0 VARIANT=fpm
     - PROJECT="nextcloud" BASE=alpine ARCH=amd64 VERSION=18.0 VARIANT=nginx
 
