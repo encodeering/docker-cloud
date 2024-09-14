@@ -15,13 +15,5 @@ check () {
     dup | contains "VersionString = '${VERSION}"
 }
 
-case "$PROJECT" in
-  owncloud)
-    docker-verify                 cat version.php | check
-    docker-verify --suffix sequel cat version.php | check
-    ;;
-  nextcloud)
-    docker-verify                 cat /usr/src/nextcloud/version.php | check
-    docker-verify --suffix sequel cat /usr/src/nextcloud/version.php | check
-    ;;
-esac
+docker-verify                 cat /usr/src/nextcloud/version.php | check
+docker-verify --suffix sequel cat /usr/src/nextcloud/version.php | check
