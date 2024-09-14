@@ -1,0 +1,20 @@
+{
+    "concourse": {
+        "dind": "unstable"
+    },
+    "platforms": ["amd64", "armhf"],
+    "pipelines": [
+        { "project": "nextcloud", "base": "debian", "version": "16.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "debian", "version": "16.0", "variant": "nginx" },
+        { "project": "nextcloud", "base": "debian", "version": "17.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "debian", "version": "17.0", "variant": "nginx" },
+        { "project": "nextcloud", "base": "debian", "version": "18.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "debian", "version": "18.0", "variant": "nginx" },
+        { "project": "nextcloud", "base": "alpine", "version": "16.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "alpine", "version": "16.0", "variant": "nginx" },
+        { "project": "nextcloud", "base": "alpine", "version": "17.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "alpine", "version": "17.0", "variant": "nginx" },
+        { "project": "nextcloud", "base": "alpine", "version": "18.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "alpine", "version": "18.0", "variant": "nginx" }
+    ]
+}
