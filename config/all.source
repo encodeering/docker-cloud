@@ -1,3 +1,3 @@
 SCM_SOURCE=https://github.com/nextcloud/docker.git
 SCM_TARGET=modules/$VARIANT/$PROJECT
-SCM_COMMIT=0b6a0991bf40d3edae1053a453d626eb62aabed6
+SCM_COMMIT=0ffd24170f863f302dfb74fe3a63b6c41f82a4fa
