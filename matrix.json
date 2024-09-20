@@ -1,0 +1,12 @@
+{
+    "concourse": {
+        "dind": "0.1.17"
+    },
+    "platforms": ["amd64", "armhf"],
+    "pipelines": [
+        { "project": "nextcloud", "base": "debian", "version": "30.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "debian", "version": "30.0", "variant": "nginx" },
+        { "project": "nextcloud", "base": "alpine", "version": "30.0", "variant": "fpm"   },
+        { "project": "nextcloud", "base": "alpine", "version": "30.0", "variant": "nginx" }
+    ]
+}
