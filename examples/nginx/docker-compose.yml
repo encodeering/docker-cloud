@@ -1,52 +1,53 @@
 version: '3.5'
 services:
   traefik:
-    image: encodeering/traefik-${ARCH:-armhf}:1.7-alpine
-    command: |
-      --api
-      --api.entryPoint='api'
-      --logLevel='INFO'
-      --defaultentrypoints='http,https'
-      --entryPoints='Name:api Address::8080'
-      --entryPoints='Name:http Address::80 Redirect.EntryPoint:https'
-      --entryPoints='Name:https Address::443 TLS'
-      --docker
-      --docker.exposedbydefault=false
-      --acme
-      --acme.email='${EMAIL}'
-      --acme.entrypoint='https'
-      --acme.httpchallenge.entrypoint='http'
-      --acme.storage='/data/acme.json'
-      --acme.onhostrule=true
+    image: encodeering/traefik-${ARCH:-armhf}:2.11-alpine
+    command:
+      - --log.level=INFO
+      - --entryPoints.https.address=:443
+      - --entryPoints.http.address=:80
+      - --entryPoints.http.http.redirections.entryPoint.to=https
+      - --entryPoints.http.http.redirections.entryPoint.scheme=https
+      - --providers.docker.watch=true
+      - --providers.docker.exposedByDefault=false
+      - --certificatesResolvers.default.acme.email=${EMAIL}
+      - --certificatesResolvers.default.acme.httpChallenge.entrypoint=http
+      - --certificatesResolvers.default.acme.storage=/data/acme.json
     volumes:
       - proxy:/data
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "80:80"
-      - "8080:8080"
       - "443:443"
     networks:
       traefik:
 
   nginx:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-alpine-nginx
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-30.0}-alpine-nginx
     volumes:
       - www:/var/www/html
     depends_on:
       - cloud
     environment:
-      VHOST: ssl-off
+      VHOST: ssl-off-h2c
     labels:
-      traefik.frontend.rule: Host:${DOMAIN}
-      traefik.port: 80
       traefik.enable: true
       traefik.docker.network: traefik
+      traefik.http.routers.cloud.entrypoints: http
+      traefik.http.routers.cloud.rule: Host(`${DOMAIN}`) # && Headers(`X-Bootstrap`, `f22c97f5-eaf3-458d-b483-1df930a56022`) # useful during a bootstrap event if you can't shield the process in another way; requires a browser extension. please use a different value and remove it afterward
+      traefik.http.routers.cloud-secure.rule: Host(`${DOMAIN}`) # && Headers(`X-Bootstrap`, `f22c97f5-eaf3-458d-b483-1df930a56022`)
+      traefik.http.routers.cloud-secure.tls: true
+      traefik.http.routers.cloud-secure.tls.certresolver: default
+      traefik.http.routers.cloud-secure.service: cloud
+      traefik.http.services.cloud.loadbalancer.server.port: 80
+      traefik.http.services.cloud.loadbalancer.server.scheme: h2c
     networks:
       cloud:
       traefik:
 
   cloud:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-debian-fpm-sequel
+    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-30.0}-alpine-fpm-sequel
+    user: www-data
     volumes:
       - www:/var/www/html
     depends_on:
@@ -57,28 +58,19 @@ services:
         aliases:
           - php
 
-  cron:
-    image: encodeering/${PROVIDER:-nextcloud}-${ARCH:-armhf}:${VERSION:-15.0}-debian-fpm-sequel
-    entrypoint: docker-cron.sh
-    volumes:
-      - www:/var/www/html
-    depends_on:
-      - cloud
-    networks:
-      cloud:
-
   postgres:
-    image: encodeering/postgres-${ARCH:-armhf}:9.6-alpine
+    image: encodeering/postgres-${ARCH:-armhf}:16-alpine
     volumes:
       - db:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: storage
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${SECRET:-secret}
     networks:
       cloud:
 
   redis:
-    image: encodeering/redis-${ARCH:-armhf}:5.0-alpine
+    image: encodeering/redis-${ARCH:-armhf}:7.4-alpine
     volumes:
       - cache:/data
     environment:
